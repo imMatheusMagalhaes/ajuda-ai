@@ -6,14 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CampaignService } from '@modules/campaign/campaign.service';
 import { CreateCampaignDto } from '@modules/campaign/dto/create-campaign.dto';
 import { UpdateCampaignDto } from '@modules/campaign/dto/update-campaign.dto';
 import FindParams from '@app/interfaces/find-params.interface';
 import { Campaign } from '@prisma/client';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('campaign')
+@UseGuards(AuthGuard('jwt'))
 export class CampaignController {
   constructor(private readonly campaignService: CampaignService) {}
 

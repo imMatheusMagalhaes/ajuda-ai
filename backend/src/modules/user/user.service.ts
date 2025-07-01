@@ -30,6 +30,14 @@ export class UserService {
     });
   }
 
+  async findOneUserByEmail(email: string): Promise<User | null> {
+    return this.database.user.findUnique({
+      where: {
+        email,
+      },
+    });
+  }
+
   async updateUser(id: string, data: UpdateUserDto) {
     return this.database.user.update({
       data,

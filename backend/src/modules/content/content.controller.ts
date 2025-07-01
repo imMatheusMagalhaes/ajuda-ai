@@ -6,14 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ContentService } from '@modules/content/content.service';
 import { CreateContentDto } from '@modules/content/dto/create-content.dto';
 import { UpdateContentDto } from '@modules/content/dto/update-content.dto';
 import FindParams from '@app/interfaces/find-params.interface';
 import { Content } from '@prisma/client';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('content')
+@UseGuards(AuthGuard('jwt'))
 export class ContentController {
   constructor(private readonly contentService: ContentService) {}
 
